@@ -64,6 +64,9 @@ const userLogin = async (req, res) => {
   }
 };
 
+
+
+
 const resetPassword = async (req, res) => {
   try {
     const email = req.body.email;
@@ -92,8 +95,91 @@ const resetPassword = async (req, res) => {
   }
 };
 
+const removeUser = async (req, res) => {
+  const { email, password } = req.body;
+  const userpass = { password };
+  try {
+    const data = await UserModel.find({ email });
+    if (data.length !== 0) {
+      // console.log(data)
+      console.log(userpass.password, data[0].password);
+      if (userpass.password == data[0].password) {
+        const query = { email: email };
+        const result = await UserModel.findOneAndDelete(query);
+        if (result) {
+          console.log("Successfully deleted one document.");
+          return res.json({
+            message: `Successfully deleted ${email}.`,
+          });
+        } else {
+          console.log("No documents matched the query. Deleted 0 documents.");
+          return res.json({
+            message: `Not deleted`,
+          });
+        }
+      }
+      return res.json({
+        message: `Incorrect password`,
+      });
+    }
+
+    return res.json({
+      message: "User doesn't exist or Incorrect email",
+    });
+  } catch (error) {
+    return res.json({
+      message: "error",
+    });
+  }
+};
+
+const updateUser = async (req, res) => {
+  const { email, password, newEmail, newPassword, newName } = req.body;
+
+  try {
+    const data = await UserModel.find({ email });
+    if (data.length !== 0) {
+      console.log(password, data[0].password);
+      
+      //
+      if (password == data[0].password) {
+     const result = await UserModel.findOneAndUpdate(
+        { email: email },
+        { $set: { password: newPassword } },
+        { $set: { email: newEmail } },
+        { $set: { name: newName } }
+      );
+        if (result) {
+          console.log("Successfully Update User Info.");
+          return res.json({
+            message: `Successfully Update User Info.`,
+          });
+        } else {
+          console.log("No documents matched the query");
+          return res.json({
+            message: `Not Updated`,
+          });
+        }
+      }
+      return res.json({
+        message: `Incorrect password`,
+      });
+    }
+
+    return res.json({
+      message: "User doesn't exist or Incorrect email",
+    });
+  } catch (error) {
+    return res.json({
+      message: "error",
+    });
+  }
+};
+
 module.exports = {
   registerController,
   userLogin,
   resetPassword,
+  removeUser,
+  updateUser,
 };
