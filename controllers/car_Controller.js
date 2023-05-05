@@ -1,5 +1,5 @@
 // const carModel = require("../models/CarModel");
-const CarModel = require("../models/CarModel");
+const CarModel = require("../models/CarModel")
 
 const carDetails = async (req, res) => {
   const { company, image, model, price, rentarid } = req.body;
@@ -27,22 +27,22 @@ const carDetails = async (req, res) => {
   }
 };
 
-const addCars = async (req, res) => {
-  try {
-    const cars = new carModel({
-      company: req.body.company,
-      image: req.body.image,
-      model: req.body.model,
-      price: req.body.price,
-      renter_id: req.body.renter_id
-    });
-    const carlist = await cars.save();
+// const addCars = async (req, res) => {
+//   try {
+//     const cars = new CarModel({
+//       company: req.body.company,
+//       image: req.body.image,
+//       model: req.body.model,
+//       price: req.body.price,
+//       renter_id: req.body.renter_id
+//     });
+//     const carlist = await cars.save();
 
-    res.status(200).send({ success: true, msg: "Cars are added", data: carlist });
-  } catch (error) { 
-    res.json({ message: "Cars are not adding"})
-  }
-};
+//     res.status(200).send({ success: true, msg: "Cars are added", data: carlist });
+//   } catch (error) { 
+//     res.json({ message: "Cars are not adding"})
+//   }
+// };
 const updateCars = async (req, res) => {
   try {
     const dataUpdate = new carModel({
@@ -64,6 +64,6 @@ const updateCars = async (req, res) => {
 
 module.exports = {
   carDetails,
-  addCars,
+  // addCars,
   updateCars
 };

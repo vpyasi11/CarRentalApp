@@ -19,8 +19,8 @@ const CarSchema = new Schema({
         type: Number,
         required: true
     },
-    owner_id:{
-        type: mongoose.schema.Types.ObjectId,
+    renter_id:{
+        type: mongoose.Schema.Types.ObjectId,
         ref : "User"
     }
 },{
