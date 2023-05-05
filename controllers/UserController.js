@@ -67,7 +67,37 @@ const userLogin = async (req, res) => {
     }
 }
 
+// const resetPassword = async (req, res) => {
+//     const { email,password } = req.body
+//     const userpass = {password}
+
+//     try {
+//         const data = await UserModel.find({ email })
+//         if (data.length !== 0) {
+//             // console.log(data)
+//             console.log(userpass.password)
+//             data[0].password = userpass.password
+            
+//             return res.json({
+//                     message: ` ${data[0].name} Your Password is Changed`
+//                 })
+            
+           
+//         }
+        
+    
+//     }   
+//     catch (error) {
+//         return res.json({
+//             message: "error"
+//         })
+//     }
+// }
+
+
+
+
 module.exports = {
     registerController,
-    userLogin
+    userLogin,
 }

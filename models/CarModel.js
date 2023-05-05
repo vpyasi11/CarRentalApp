@@ -20,7 +20,7 @@ const CarSchema = new Schema({
         required: true
     },
     owner_id:{
-        type: mongoose.schema.Types.ObjectId,
+        type: mongoose.Schema.Types.ObjectId,
         ref : "User"
     }
 },{
@@ -28,6 +28,6 @@ const CarSchema = new Schema({
 }
 );
 
-const CarModel = mongoose.model('car', CarSchema)
+const CarModel = mongoose.model('Car', CarSchema)
 
 module.exports = CarModel

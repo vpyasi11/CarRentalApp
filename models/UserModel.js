@@ -19,7 +19,8 @@ const UserSchema = new Schema({
         type: String,
         required: true
     }
-},{
+},
+{
     timestamps:true
 }
 );
@@ -27,3 +28,5 @@ const UserSchema = new Schema({
 const UserModel = mongoose.model('User', UserSchema)
 
 module.exports = UserModel
+
+// model > imports > controller > imports > routes
