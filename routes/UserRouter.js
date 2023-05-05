@@ -7,6 +7,7 @@ const {
   resetPassword,
   removeUser,
   updateUser,
+  findUser,
 } = require("../controllers/UserController");
 
 // const {rights,userbyrole} = require("../controllers/Rightcontroller")
@@ -18,5 +19,7 @@ UserRouter.post("/login", userLogin);
 UserRouter.post("/resetPassword", resetPassword);
 UserRouter.post("/removeUser", removeUser);
 UserRouter.post("/updateUser", updateUser);
+UserRouter.post("/updateUser", updateUser);
+UserRouter.post("/findUser", findUser);
 
 module.exports = UserRouter;
