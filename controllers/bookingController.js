@@ -1,13 +1,13 @@
 const BookingModel = require("../models/bookinModel");
 
 const registerController = async (req, res) => {
-    const { car_id, renter_id, owner_id, status } = req.body;
-    console.log(car_id, renter_id, owner_id, status);
+    const { car_id, renter_id, owner_id } = req.body;
+    console.log(car_id, renter_id, owner_id);
     let userobj = {
         car_id: car_id,
         renter_id: renter_id,
         owner_id: owner_id,
-        status: status,
+        status: "booked",
 
     };
 
@@ -69,7 +69,7 @@ const removeBooking = async (req, res) => {
 const findBooking = async (req, res) => {
     const { car_id } = req.body;
     try {
-        const data = await BookingModel.find({ car_id });
+        const data = await BookingModel.find({ car_id }).populate("car_id").populate("renter_id");
         console.log(data);
 
         if (data.length !== 0) {

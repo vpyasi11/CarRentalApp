@@ -20,6 +20,7 @@ app.use("/auth", UserRouter)
 // http://localhost:5000/auth/register
 
 app.use("/booking", BookingRouter)
+// http://localhost:5000/booking/register
 
 const port = process.env.Port
 app.listen(port, () => {
